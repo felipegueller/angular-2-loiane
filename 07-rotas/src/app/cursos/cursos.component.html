@@ -1,1 +1,10 @@
-<p>cursos works!</p>
+<div class="list-group">
+  <a
+    *ngFor="let curso of cursos"
+    class="list-group-item list-group-item-action"
+    aria-current="true"
+    [routerLink]="['/curso', curso.id]"
+  >
+    {{ curso.name }}
+  </a>
+</div>
