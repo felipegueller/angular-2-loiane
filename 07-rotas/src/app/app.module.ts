@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { CursoDetalheComponent } from './curso-detalhe/curso-detalhe.component';
 import { CursosService } from './cursos/cursos.service';
+import { CursoNaoEncontradoComponent } from './curso-nao-encontrado/curso-nao-encontrado.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CursosService } from './cursos/cursos.service';
     HomeComponent,
     LoginComponent,
     CursosComponent,
-    CursoDetalheComponent
+    CursoDetalheComponent,
+    CursoNaoEncontradoComponent
   ],
   imports: [
     BrowserModule,
