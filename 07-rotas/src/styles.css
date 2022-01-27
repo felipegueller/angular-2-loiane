@@ -2,3 +2,29 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.box {
+  border-top: floralwhite;
+}
+
+.box-title {
+  text-transform: uppercase;
+}
+
+.box-header {
+  background-color: #eaeaea;
+}
+
+.shadow {
+  box-shadow: 3px 4px 12px 0 rgba(52, 57, 61, 0.2);
+  border: 1px solid #d5d6d6;
+}
+
+.box-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.box-footer > button {
+  margin-left: 5px;
+}
