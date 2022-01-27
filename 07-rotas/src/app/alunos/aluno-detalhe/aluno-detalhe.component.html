@@ -1,1 +1,13 @@
-<p>aluno-detalhe works!</p>
+<div class="card border-dark mt-5" style="max-width: 18rem">
+  <div class="card-header bg-transparent border-dark">Detalhes do aluno</div>
+  <div class="card-body text-dark">
+    <p class="card-text"><strong>Id:</strong> {{ aluno.id }}</p>
+    <p class="card-text"><strong>Nome:</strong> {{ aluno.nome }}</p>
+    <p class="card-text"><strong>E-mail:</strong> {{ aluno.email }}</p>
+  </div>
+  <div class="card-footer bg-transparent border-success">
+    <button class="btn btn-secondary btn-sm" (click)="editarAluno()">
+      Editar
+    </button>
+  </div>
+</div>
