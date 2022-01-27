@@ -1,3 +1,7 @@
+<p>Lista de cursos</p>
+
+<p>Página: {{ pagina }}</p>
+
 <div class="list-group">
   <a
     *ngFor="let curso of cursos"
@@ -8,3 +12,7 @@
     {{ curso.name }}
   </a>
 </div>
+<br />
+<button class="btn btn-primary btn-sm" (click)="nextPage()">
+  Próx. Página
+</button>
