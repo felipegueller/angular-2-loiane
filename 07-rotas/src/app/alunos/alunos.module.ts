@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { AlunosComponent } from './alunos.component';
 import { AlunosFormComponent } from './alunos-form/alunos-form.component';
 import { AlunoDetalheComponent } from './aluno-detalhe/aluno-detalhe.component';
+import { AlunosRoutingModule } from './alunos.routing.module';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, AlunosRoutingModule],
   exports: [],
   declarations: [AlunosComponent, AlunosFormComponent, AlunoDetalheComponent],
   providers: [],
