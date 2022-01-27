@@ -19,7 +19,7 @@ import { CursosModule } from './cursos/cursos.module';
     AppRoutingModule,
     CursosModule,
   ],
-  providers: [CursosService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

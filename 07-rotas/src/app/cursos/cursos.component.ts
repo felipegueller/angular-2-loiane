@@ -6,25 +6,24 @@ import { CursosService } from './cursos.service';
 @Component({
   selector: 'app-cursos',
   templateUrl: './cursos.component.html',
-  styleUrls: ['./cursos.component.css']
+  styleUrls: ['./cursos.component.css'],
 })
 export class CursosComponent implements OnInit, OnDestroy {
   cursos!: any;
   pagina!: number;
-  inscricao !: Subscription;
+  inscricao!: Subscription;
 
   constructor(
     private cursosService: CursosService,
     private route: ActivatedRoute,
-    private router: Router,
-  ) { }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.cursos = this.cursosService.getCursos()
-    this.inscricao = this.route.queryParams.subscribe(params =>
-      this.pagina = params['pagina']
-    )
-
+    this.cursos = this.cursosService.getCursos();
+    this.inscricao = this.route.queryParams.subscribe(
+      (params) => (this.pagina = params['pagina'])
+    );
   }
 
   ngOnDestroy(): void {
@@ -33,9 +32,10 @@ export class CursosComponent implements OnInit, OnDestroy {
 
   nextPage(): void {
     // this.pagina++;
-    this.router.navigate(['cursos'], {queryParams: {
-      'pagina': ++this.pagina
-    }})
+    this.router.navigate(['cursos'], {
+      queryParams: {
+        pagina: ++this.pagina,
+      },
+    });
   }
-
 }
