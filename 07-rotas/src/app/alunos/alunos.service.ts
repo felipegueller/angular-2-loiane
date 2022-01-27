@@ -23,4 +23,6 @@ export class AlunosService {
     }
     return { id: null!, nome: '', email: '' };
   }
+
+  atualizarAluno(data: Aluno) {}
 }
