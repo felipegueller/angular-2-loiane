@@ -6,36 +6,33 @@ import { CursosService } from '../cursos.service';
 @Component({
   selector: 'app-curso-detalhe',
   templateUrl: './curso-detalhe.component.html',
-  styleUrls: ['./curso-detalhe.component.css']
+  styleUrls: ['./curso-detalhe.component.css'],
 })
 export class CursoDetalheComponent implements OnInit, OnDestroy {
   id: number = 0;
-  inscricao !: Subscription;
+  inscricao!: Subscription;
   curso?: any;
 
   constructor(
     private route: ActivatedRoute,
     private cursosService: CursosService,
-    private router: Router,
-  ){
+    private router: Router
+  ) {
     // this.id = this.route.snapshot.params['id'];
     // console.log('Now: ', this.id)
   }
 
   ngOnInit(): void {
-    this.inscricao = this.route.params.subscribe(params => {
+    this.inscricao = this.route.params.subscribe((params) => {
       this.id = params['id'];
 
-      this.curso = this.cursosService.getCurso(this.id)
+      this.curso = this.cursosService.getCurso(this.id);
 
-      if(!this.curso)
-      this.router.navigate(['/not-found'])
-    })
-
+      if (!this.curso) this.router.navigate(['cursos/not-found']);
+    });
   }
 
-  ngOnDestroy (): void {
+  ngOnDestroy(): void {
     this.inscricao.unsubscribe;
   }
-
 }
