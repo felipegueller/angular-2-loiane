@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app.routing.module';
 import { AuthService } from './login/auth.service';
 import { FormsModule } from '@angular/forms';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LoginComponent],
@@ -20,7 +21,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
