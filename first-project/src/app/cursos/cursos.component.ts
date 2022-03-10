@@ -7,8 +7,11 @@ import { CursosService } from './cursos.service';
   styleUrls: ['./cursos.component.css'],
 })
 export class CursosComponent implements OnInit {
+  nomePortal!: string;
   cursos!: Array<string>;
-  constructor(private cursosService: CursosService) {}
+  constructor(private cursosService: CursosService) {
+    this.nomePortal = 'https://loiane.training.com';
+  }
 
   ngOnInit(): void {
     this.cursos = this.cursosService.getCursos();
