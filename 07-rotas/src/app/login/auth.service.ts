@@ -25,7 +25,7 @@ export class AuthService {
     }
   }
 
-  usuarioEstaAutenticado(): boolean {
+  isUserAuthenticathed(): boolean {
     return this.usuarioAutenticado;
   }
 }
