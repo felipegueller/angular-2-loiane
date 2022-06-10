@@ -8,11 +8,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .box-title {
+  margin: 0 !important;
   text-transform: uppercase;
 }
 
 .box-header {
   background-color: #eaeaea;
+  padding: 5px 10px;
 }
 
 .shadow {
@@ -27,4 +29,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .box-footer > button {
   margin-left: 5px;
+}
+
+.box-body,
+.box-footer {
+  padding: 10px 20px;
 }
