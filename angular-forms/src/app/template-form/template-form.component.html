@@ -134,7 +134,7 @@
         />
         <app-field-error-control
           [showError]="isAnInvalidField(street)"
-          errorMessage="Número é obrigatório!"
+          errorMessage="Rua é obrigatório!"
         ></app-field-error-control>
       </div>
     </div>
@@ -182,9 +182,10 @@
           placeholder="Ex: Açailândia"
           required
         />
-        <div class="invalid-feedback" *ngIf="isAnInvalidField(city)">
-          Cidade é obrigatório!
-        </div>
+        <app-field-error-control
+          [showError]="isAnInvalidField(number)"
+          errorMessage="Cidade é obrigatório!"
+        ></app-field-error-control>
       </div>
     </div>
 
