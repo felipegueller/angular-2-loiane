@@ -7,11 +7,16 @@ import { NgForm } from '@angular/forms'
   styleUrls: ['./template-form.component.css'],
 })
 export class TemplateFormComponent implements OnInit {
+  public user = {
+    name: 'Felipe Gueller',
+    email: 'nonbindabble@javamail.com'
+  }
+
   constructor() {}
 
   ngOnInit(): void {}
 
   onSubmit(form: NgForm): void {
-    console.log(form)
+    console.log(this.user)
   }
 }
