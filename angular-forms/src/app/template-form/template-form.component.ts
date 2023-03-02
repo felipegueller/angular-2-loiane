@@ -8,8 +8,8 @@ import { NgForm } from '@angular/forms'
 })
 export class TemplateFormComponent implements OnInit {
   public user = {
-    name: 'Felipe Gueller',
-    email: 'nonbindabble@javamail.com'
+    name: null,
+    email: null
   }
 
   constructor() {}

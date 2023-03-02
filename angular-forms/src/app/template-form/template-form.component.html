@@ -8,7 +8,12 @@
       name="name"
       placeholder="Fulano de Tal"
       [(ngModel)]="user.name"
+      required
+      #name
     />
+    <div>
+      {{ name.className }}
+    </div>
   </div>
 
   <div class="form-group mb-2">
@@ -20,6 +25,8 @@
       name="email"
       placeholder="fulanodetal@mail.com"
       [(ngModel)]="user.email"
+      required
+      email
     />
   </div>
 
