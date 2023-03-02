@@ -8,8 +8,7 @@
         </label>
         <input
           class="form-control"
-          [class.is-valid]="name.valid && (name.touched || name.dirty)"
-          [class.is-invalid]="!name.valid && (name.touched || name.dirty)"
+          [ngClass]="applyValidationFieldCss(name)"
           type="text"
           id="name"
           name="name"
@@ -18,12 +17,10 @@
           required
           #name="ngModel"
         />
-        <div
-          class="invalid-feedback"
-          *ngIf="!name.valid && (name.touched || name.dirty)"
-        >
-          Nome é obrigatório!
-        </div>
+        <app-field-error-control
+          [showError]="isAnInvalidField(name)"
+          errorMessage="Nome é obrigatório!"
+        ></app-field-error-control>
       </div>
     </div>
 
@@ -35,8 +32,7 @@
         </label>
         <input
           class="form-control"
-          [class.is-valid]="email.valid && (email.touched || email.dirty)"
-          [class.is-invalid]="!email.valid && (email.touched || email.dirty)"
+          [ngClass]="applyValidationFieldCss(email)"
           type="email"
           id="email"
           name="email"
@@ -46,12 +42,10 @@
           email
           #email="ngModel"
         />
-        <div
-          class="invalid-feedback"
-          *ngIf="!email.valid && (email.touched || email.dirty)"
-        >
-          E-mail inválido!
-        </div>
+        <app-field-error-control
+          [showError]="isAnInvalidField(email)"
+          errorMessage="Email inválido!"
+        ></app-field-error-control>
       </div>
     </div>
   </div>
@@ -65,8 +59,7 @@
         </label>
         <input
           class="form-control"
-          [class.is-valid]="cep.valid && (cep.touched || cep.dirty)"
-          [class.is-invalid]="!cep.valid && (cep.touched || cep.dirty)"
+          [ngClass]="applyValidationFieldCss(cep)"
           type="text"
           id="cep"
           name="cep"
@@ -75,12 +68,10 @@
           placeholder="xxxxx-xxx"
           required
         />
-      </div>
-      <div
-        class="invalid-feedback"
-        *ngIf="!cep.valid && (cep.touched || cep.dirty)"
-      >
-        CEP inválido!
+        <app-field-error-control
+          [showError]="isAnInvalidField(cep)"
+          errorMessage="CEP é obrigatório!"
+        ></app-field-error-control>
       </div>
     </div>
 
@@ -92,8 +83,7 @@
         </label>
         <input
           class="form-control"
-          [class.is-valid]="number.valid && (number.touched || number.dirty)"
-          [class.is-invalid]="!number.valid && (number.touched || number.dirty)"
+          [ngClass]="applyValidationFieldCss(number)"
           type="text"
           id="number"
           name="number"
@@ -102,14 +92,13 @@
           #number="ngModel"
           required
         />
-      </div>
-      <div
-        class="invalid-feedback"
-        *ngIf="!number.valid && (number.touched || number.dirty)"
-      >
-        Número é obrigatório!
+        <app-field-error-control
+          [showError]="isAnInvalidField(number)"
+          errorMessage="Número é obrigatório!"
+        ></app-field-error-control>
       </div>
     </div>
+
     <div class="col-12 col-sm-6">
       <div class="form-group mb-2">
         <label for="complement"> Complemento </label>
@@ -118,10 +107,9 @@
           type="text"
           id="complement"
           name="complement"
-          placeholder="Perto da mercearia do seu zé"
+          placeholder="Ex: Perto da mercearia do seu zé"
           ngModel
           #complement="ngModel"
-          required
         />
       </div>
     </div>
@@ -136,21 +124,91 @@
         ><input
           type="text"
           class="form-control"
-          [class.is-valid]="street.valid && (street.touched || street.dirty)"
-          [class.is-invalid]="!street.valid && (street.touched || street.dirty)"
+          [ngClass]="applyValidationFieldCss(street)"
           id="street"
           name="street"
-          placeholder="Rua dos Alfeneiros"
+          placeholder="Ex: Rua dos Alfeneiros"
           ngModel
           required
           #street="ngModel"
         />
-        <div
-          class="invalid-feedback"
-          *ngIf="!street.valid && (street.touched || street.dirty)"
-        >
-          Rua é obrigatório!
+        <app-field-error-control
+          [showError]="isAnInvalidField(street)"
+          errorMessage="Número é obrigatório!"
+        ></app-field-error-control>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-sm-5">
+      <div class="form-group mb-2">
+        <label for="neighborhood">
+          Bairro
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          class="form-control"
+          [ngClass]="applyValidationFieldCss(neighborhood)"
+          type="text"
+          id="neighborhood"
+          name="neighborhood"
+          ngModel
+          #neighborhood="ngModel"
+          placeholder="Ex: Esplanada"
+          required
+        />
+        <app-field-error-control
+          [showError]="isAnInvalidField(neighborhood)"
+          errorMessage="Bairro é obrigatório!"
+        ></app-field-error-control>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-4">
+      <div class="form-group mb-2">
+        <label for="city">
+          Cidade
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          class="form-control"
+          [ngClass]="applyValidationFieldCss(city)"
+          type="text"
+          id="city"
+          name="city"
+          ngModel
+          #city="ngModel"
+          placeholder="Ex: Açailândia"
+          required
+        />
+        <div class="invalid-feedback" *ngIf="isAnInvalidField(city)">
+          Cidade é obrigatório!
         </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-3">
+      <div class="form-group mb-2">
+        <label for="federative_units">
+          Estado
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          class="form-control"
+          [ngClass]="applyValidationFieldCss(federative_units)"
+          type="text"
+          id="federative_units"
+          name="federative_units"
+          ngModel
+          #federative_units="ngModel"
+          placeholder="Ex: Espírito Santo"
+          required
+        />
+        <app-field-error-control
+          [showError]="isAnInvalidField(federative_units)"
+          errorMessage="Estado é obrigatório!"
+        ></app-field-error-control>
       </div>
     </div>
   </div>

@@ -20,11 +20,11 @@ export class TemplateFormComponent implements OnInit {
     console.log(form);
   }
 
-  isAnValidField = (field: NgModel) =>
-    field.valid && (field.touched || field.dirty);
+  isAnValidField = (field: NgModel): boolean =>
+    field.valid && (field.touched || field.dirty) || false;
 
-  isAnInvalidField = (field: NgModel) =>
-    !field.valid && (field.touched || field.dirty);
+  isAnInvalidField = (field: NgModel): boolean =>
+    !field.valid && (field.touched || field.dirty) || false;
 
   applyValidationFieldCss = (field: NgModel) => ({
     'is-valid': this.isAnValidField(field),
