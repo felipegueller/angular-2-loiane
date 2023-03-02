@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms'
+import { NgForm, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-template-form',
@@ -9,14 +9,25 @@ import { NgForm } from '@angular/forms'
 export class TemplateFormComponent implements OnInit {
   public user = {
     name: null,
-    email: null
-  }
+    email: null,
+  };
 
   constructor() {}
 
   ngOnInit(): void {}
 
   onSubmit(form: NgForm): void {
-    console.log(form)
+    console.log(form);
   }
+
+  isAnValidField = (field: NgModel) =>
+    field.valid && (field.touched || field.dirty);
+
+  isAnInvalidField = (field: NgModel) =>
+    !field.valid && (field.touched || field.dirty);
+
+  applyValidationFieldCss = (field: NgModel) => ({
+    'is-valid': this.isAnValidField(field),
+    'is-invalid': this.isAnInvalidField(field),
+  });
 }
