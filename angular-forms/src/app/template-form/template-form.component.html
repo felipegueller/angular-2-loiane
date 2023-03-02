@@ -1,11 +1,13 @@
-<form>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <div class="form-group mb-2">
     <label for="name">Nome</label>
     <input
       class="form-control"
       type="text"
       id="name"
+      name="name"
       placeholder="Fulano de Tal"
+      ngModel
     />
   </div>
 
@@ -15,7 +17,9 @@
       class="form-control"
       type="email"
       id="email"
+      name="email"
       placeholder="fulanodetal@mail.com"
+      ngModel
     />
   </div>
 
