@@ -1,62 +1,176 @@
 <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-  <div class="form-group mb-2">
-    <label for="name">
-      Nome
-      <span class="text-danger">*</span>
-    </label>
-    <input
-      class="form-control"
-      [class.is-valid]="name.valid && (name.touched || name.dirty)"
-      [class.is-invalid]="!name.valid && (name.touched || name.dirty)"
-      type="text"
-      id="name"
-      name="name"
-      placeholder="Fulano de Tal"
-      [(ngModel)]="user.name"
-      required
-      #name="ngModel"
-    />
-    <div
-      class="invalid-feedback"
-      *ngIf="!name.valid && (name.touched || name.dirty)"
-    >
-      Nome é obrigatório!
+  <div class="row">
+    <div class="col-12 col-sm-6">
+      <div class="form-group mb-2">
+        <label for="name">
+          Nome
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          class="form-control"
+          [class.is-valid]="name.valid && (name.touched || name.dirty)"
+          [class.is-invalid]="!name.valid && (name.touched || name.dirty)"
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Fulano de Tal"
+          [(ngModel)]="user.name"
+          required
+          #name="ngModel"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="!name.valid && (name.touched || name.dirty)"
+        >
+          Nome é obrigatório!
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6">
+      <div class="form-group mb-2">
+        <label for="email">
+          E-mail
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          class="form-control"
+          [class.is-valid]="email.valid && (email.touched || email.dirty)"
+          [class.is-invalid]="!email.valid && (email.touched || email.dirty)"
+          type="email"
+          id="email"
+          name="email"
+          placeholder="fulanodetal@mail.com"
+          [(ngModel)]="user.email"
+          required
+          email
+          #email="ngModel"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="!email.valid && (email.touched || email.dirty)"
+        >
+          E-mail inválido!
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="form-group mb-2">
-    <label for="email">
-      E-mail
-      <span class="text-danger">*</span>
-    </label>
-    <input
-      class="form-control"
-      [class.is-valid]="email.valid && (email.touched || email.dirty)"
-      [class.is-invalid]="!email.valid && (email.touched || email.dirty)"
-      type="email"
-      id="email"
-      name="email"
-      placeholder="fulanodetal@mail.com"
-      [(ngModel)]="user.email"
-      required
-      email
-      #email="ngModel"
-    />
-    <div
-      class="invalid-feedback"
-      *ngIf="!email.valid && (email.touched || email.dirty)"
-    >
-      E-mail inválido!
+  <div class="row">
+    <div class="col-12 col-sm-3">
+      <div class="form-group mb-2">
+        <label for="cep">
+          CEP
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          class="form-control"
+          [class.is-valid]="cep.valid && (cep.touched || cep.dirty)"
+          [class.is-invalid]="!cep.valid && (cep.touched || cep.dirty)"
+          type="text"
+          id="cep"
+          name="cep"
+          ngModel
+          #cep="ngModel"
+          placeholder="xxxxx-xxx"
+          required
+        />
+      </div>
+      <div
+        class="invalid-feedback"
+        *ngIf="!cep.valid && (cep.touched || cep.dirty)"
+      >
+        CEP inválido!
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-3">
+      <div class="form-group mb-2">
+        <label for="number">
+          Número
+          <span class="text-danger">*</span>
+        </label>
+        <input
+          class="form-control"
+          [class.is-valid]="number.valid && (number.touched || number.dirty)"
+          [class.is-invalid]="!number.valid && (number.touched || number.dirty)"
+          type="text"
+          id="number"
+          name="number"
+          placeholder="Ex: 445"
+          ngModel
+          #number="ngModel"
+          required
+        />
+      </div>
+      <div
+        class="invalid-feedback"
+        *ngIf="!number.valid && (number.touched || number.dirty)"
+      >
+        Número é obrigatório!
+      </div>
+    </div>
+    <div class="col-12 col-sm-6">
+      <div class="form-group mb-2">
+        <label for="complement"> Complemento </label>
+        <input
+          class="form-control"
+          type="text"
+          id="complement"
+          name="complement"
+          placeholder="Perto da mercearia do seu zé"
+          ngModel
+          #complement="ngModel"
+          required
+        />
+      </div>
     </div>
   </div>
 
-  <button
-    type="submit"
-    class="btn btn-sm btn-outline-primary"
-    [disabled]="!form.valid"
-  >
-    Enviar
-  </button>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label for="street">
+          Rua
+          <span class="text-danger">*</span> </label
+        ><input
+          type="text"
+          class="form-control"
+          [class.is-valid]="street.valid && (street.touched || street.dirty)"
+          [class.is-invalid]="!street.valid && (street.touched || street.dirty)"
+          id="street"
+          name="street"
+          placeholder="Rua dos Alfeneiros"
+          ngModel
+          required
+          #street="ngModel"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="!street.valid && (street.touched || street.dirty)"
+        >
+          Rua é obrigatório!
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <button class="btn btn-sm btn-outline-secondary" type="reset" style="margin-left: 5px;">Resetar</button>
+  <div class="mt-2">
+    <button
+      type="submit"
+      class="btn btn-outline-primary"
+      [disabled]="!form.valid"
+    >
+      Enviar
+    </button>
+    <button
+      class="btn btn-outline-secondary"
+      type="reset"
+      style="margin-left: 5px"
+    >
+      Resetar
+    </button>
+  </div>
+
+  <app-form-debug [form]="form"></app-form-debug>
 </form>
