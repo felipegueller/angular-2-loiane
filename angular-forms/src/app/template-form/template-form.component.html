@@ -16,7 +16,10 @@
       required
       #name="ngModel"
     />
-    <div class="invalid-feedback" *ngIf="!name.valid && (name.touched || name.dirty)">
+    <div
+      class="invalid-feedback"
+      *ngIf="!name.valid && (name.touched || name.dirty)"
+    >
       Nome é obrigatório!
     </div>
   </div>
@@ -39,10 +42,21 @@
       email
       #email="ngModel"
     />
-    <div class="invalid-feedback" *ngIf="!email.valid && (email.touched || email.dirty)">
+    <div
+      class="invalid-feedback"
+      *ngIf="!email.valid && (email.touched || email.dirty)"
+    >
       E-mail inválido!
     </div>
   </div>
 
-  <button type="submit" class="btn btn-sm btn-primary">Enviar</button>
+  <button
+    type="submit"
+    class="btn btn-sm btn-outline-primary"
+    [disabled]="!form.valid"
+  >
+    Enviar
+  </button>
+
+  <button class="btn btn-sm btn-outline-secondary" type="reset" style="margin-left: 5px;">Resetar</button>
 </form>
