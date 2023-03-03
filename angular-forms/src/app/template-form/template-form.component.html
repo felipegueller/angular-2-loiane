@@ -187,23 +187,23 @@
       </div>
       <div class="col-12 col-sm-3">
         <div class="form-group mb-2">
-          <label for="federative_units">
+          <label for="federative_unit">
             Estado
             <span class="text-danger">*</span>
           </label>
           <input
             class="form-control"
-            [ngClass]="applyValidationFieldCss(federative_units)"
+            [ngClass]="applyValidationFieldCss(federative_unit)"
             type="text"
-            id="federative_units"
-            name="federative_units"
+            id="federative_unit"
+            name="federative_unit"
             ngModel
-            #federative_units="ngModel"
+            #federative_unit="ngModel"
             placeholder="Ex: Espírito Santo"
             required
           />
           <app-field-error-control
-            [showError]="isAnInvalidField(federative_units)"
+            [showError]="isAnInvalidField(federative_unit)"
             errorMessage="Estado é obrigatório!"
           ></app-field-error-control>
         </div>

@@ -33,7 +33,7 @@ export class TemplateFormComponent implements OnInit {
   });
 
   populateDataAddress(data: any, form: NgForm): void {
-    const {street, complement, neighborhood, federative_units, city} = form.value.endereco
+    const {street, complement, neighborhood, federative_unit, city} = form.value.endereco
     console.log(data)
     console.log(form)
 
@@ -42,7 +42,7 @@ export class TemplateFormComponent implements OnInit {
         street: data['logradouro'] || street,
         complement: data['complemento'] || complement,
         neighborhood: data['bairro'] || neighborhood,
-        federative_units: data['uf'] || federative_units,
+        federative_unit: data['uf'] || federative_unit,
         city: data['localidade'] || city
       }
     })
