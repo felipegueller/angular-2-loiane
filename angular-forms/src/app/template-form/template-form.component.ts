@@ -32,7 +32,23 @@ export class TemplateFormComponent implements OnInit {
     'is-invalid': this.isAnInvalidField(field),
   });
 
-  searchCep = (event: FocusEvent): void => {
+  populateDataAddress(data: any, form: NgForm): void {
+    const {street, complement, neighborhood, federative_units, city} = form.value.endereco
+    console.log(data)
+    console.log(form)
+
+    form['form'].patchValue({
+      endereco: {
+        street: data['logradouro'] || street,
+        complement: data['complemento'] || complement,
+        neighborhood: data['bairro'] || neighborhood,
+        federative_units: data['uf'] || federative_units,
+        city: data['localidade'] || city
+      }
+    })
+  }
+
+  searchCep = (event: FocusEvent, form: NgForm): void => {
     const cep: string = (event.target as HTMLInputElement).value;
     if (!cep) return;
 
@@ -42,8 +58,10 @@ export class TemplateFormComponent implements OnInit {
       : cep;
 
     const hasEightDigits = /^[0-9]{8}$/;
-    if(!hasEightDigits.test(formatedCep)) return
+    if (!hasEightDigits.test(formatedCep)) return;
 
-    this.templateFormService.searchCep(formatedCep).subscribe(resp => console.log(resp))
+    this.templateFormService
+      .searchCep(formatedCep)
+      .subscribe((resp) => this.populateDataAddress(resp, form));
   };
 }
