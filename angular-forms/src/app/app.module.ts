@@ -1,3 +1,4 @@
+import { DataFormModule } from './data-form/data-form.module';
 import { CoreModule } from './core/core.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,14 +11,14 @@ import { TemplateFormModule } from './template-form/template-form.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DataFormComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     TemplateFormModule,
+    DataFormModule,
     CoreModule,
   ],
   providers: [],
