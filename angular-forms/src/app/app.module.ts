@@ -1,3 +1,4 @@
+import { CoreModule } from './core/core.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -17,6 +18,7 @@ import { TemplateFormModule } from './template-form/template-form.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     TemplateFormModule,
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
