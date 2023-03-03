@@ -68,6 +68,7 @@
             #cep="ngModel"
             placeholder="xxxxx-xxx"
             required
+            (blur)="searchCep($event)"
           />
           <app-field-error-control
             [showError]="isAnInvalidField(cep)"
