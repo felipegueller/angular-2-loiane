@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { TemplateFormService } from './../template-form/template-form.service';
 
@@ -18,13 +18,15 @@ export class DataFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.reactiveForm = this.formBuilder.group({
-      name: [null],
-      email: [null],
+      name: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
     });
+
+    // [Validators.required, Validators.minLength(3), Validators.maxLength(20)]
   }
 
   onSubmit() {
-    console.log(this.reactiveForm.value);
+    console.log(this.reactiveForm);
     // this.reactiveForm.reset()
   }
 }
