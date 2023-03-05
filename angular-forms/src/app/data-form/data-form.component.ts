@@ -8,12 +8,12 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class DataFormComponent implements OnInit {
 
-  private form!: FormGroup;
+  reactiveForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
+    this.reactiveForm = this.formBuilder.group({
       name: [null],
       email: [null]
     })
