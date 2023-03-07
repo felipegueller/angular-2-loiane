@@ -8,11 +8,17 @@
         </label>
         <input
           class="form-control"
+          [ngClass]="applyValidationFieldCss('name')"
           type="text"
           id="name"
           formControlName="name"
           placeholder="Fulano de Tal"
         />
+
+        <app-field-error-control
+          [showError]="isAnInvalidField('name')"
+          errorMessage="Nome é obrigatório!"
+        ></app-field-error-control>
       </div>
     </div>
 

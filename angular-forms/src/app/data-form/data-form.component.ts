@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 import { TemplateFormService } from './../template-form/template-form.service';
 
@@ -29,4 +35,20 @@ export class DataFormComponent implements OnInit {
     console.log(this.reactiveForm);
     // this.reactiveForm.reset()
   }
+
+  isAnValidField = (controlName: string): boolean => {
+    const field: AbstractControl = this.reactiveForm.controls[controlName];
+    return (field.valid && (field.touched || field.dirty)) || false;
+  };
+
+  isAnInvalidField = (controlName: string): boolean => {
+    const field: AbstractControl | null = this.reactiveForm.get(controlName);
+
+    return field ? !field.valid && (field.touched || field.dirty) : false;
+  };
+
+  applyValidationFieldCss = (controlName: string) => ({
+    'is-valid': this.isAnValidField(controlName),
+    'is-invalid': this.isAnInvalidField(controlName),
+  });
 }
