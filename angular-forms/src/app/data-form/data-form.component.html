@@ -17,7 +17,7 @@
 
         <app-field-error-control
           [showError]="isAnInvalidField('name')"
-          errorMessage="Nome é obrigatório!"
+          [errorMessage]="generateErrorMessage('name')"
         ></app-field-error-control>
       </div>
     </div>
@@ -30,12 +30,18 @@
         </label>
         <input
           class="form-control"
+          [ngClass]="applyValidationFieldCss('email')"
           type="email"
           id="email"
           formControlName="email"
           placeholder="fulanodetal@mail.com"
         />
       </div>
+
+      <app-field-error-control
+          [showError]="isAnInvalidField('email')"
+          [errorMessage]="generateErrorMessage('email')"
+        ></app-field-error-control>
     </div>
   </div>
 

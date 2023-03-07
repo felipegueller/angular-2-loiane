@@ -38,17 +38,49 @@ export class DataFormComponent implements OnInit {
 
   isAnValidField = (controlName: string): boolean => {
     const field: AbstractControl = this.reactiveForm.controls[controlName];
-    return (field.valid && (field.touched || field.dirty)) || false;
+    return field?.valid && field?.touched || false;
   };
 
   isAnInvalidField = (controlName: string): boolean => {
     const field: AbstractControl | null = this.reactiveForm.get(controlName);
 
-    return field ? !field.valid && (field.touched || field.dirty) : false;
+    return !field?.valid && field?.touched || false;
   };
 
   applyValidationFieldCss = (controlName: string) => ({
     'is-valid': this.isAnValidField(controlName),
     'is-invalid': this.isAnInvalidField(controlName),
   });
+
+  errosMap(error: string): string {
+    const errorsMap = {
+      required: 'Preenchimento obrigatório!',
+      email: 'E-mail inválido!',
+    };
+    const objectAcessExpression = error as keyof typeof errorsMap;
+
+    return errorsMap[objectAcessExpression]
+      ? errorsMap[objectAcessExpression]
+      : '';
+  }
+
+  getErrorMessage = (keys: string[]): string =>
+    keys.reduce((acc: string, key: string, index: number, arr: string[]) => {
+      const isLastElement = arr.length - 1 === index;
+
+      return isLastElement
+        ? `${acc}${this.errosMap(key)}\n`
+        : `${acc}$${this.errosMap(key)}`;
+    }, '');
+
+  generateErrorMessage(controlName: string): string {
+    const formField = this.reactiveForm.controls[controlName];
+
+    if (!formField || formField?.errors === null) return '';
+
+    const { errors } = formField;
+    const errorKeys = Object.getOwnPropertyNames(errors);
+
+    return this.getErrorMessage(errorKeys)
+  }
 }
