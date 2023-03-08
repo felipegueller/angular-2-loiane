@@ -36,15 +36,18 @@ export class DataFormComponent implements OnInit {
     // this.reactiveForm.reset()
   }
 
+  getControl = (controlName: string): AbstractControl | null =>
+    this.reactiveForm.get(controlName);
+
   isAnValidField = (controlName: string): boolean => {
-    const field: AbstractControl = this.reactiveForm.controls[controlName];
-    return field?.valid && field?.touched || false;
+    const field: AbstractControl | null = this.getControl(controlName)
+    return (field?.valid && field?.touched) || false;
   };
 
   isAnInvalidField = (controlName: string): boolean => {
-    const field: AbstractControl | null = this.reactiveForm.get(controlName);
+    const field: AbstractControl | null = this.getControl(controlName)
 
-    return !field?.valid && field?.touched || false;
+    return (!field?.valid && field?.touched) || false;
   };
 
   applyValidationFieldCss = (controlName: string) => ({
@@ -74,13 +77,12 @@ export class DataFormComponent implements OnInit {
     }, '');
 
   generateErrorMessage(controlName: string): string {
-    const formField = this.reactiveForm.controls[controlName];
+    const formField: AbstractControl | null = this.getControl(controlName)
 
     if (!formField || formField?.errors === null) return '';
 
     const { errors } = formField;
     const errorKeys = Object.getOwnPropertyNames(errors);
-
-    return this.getErrorMessage(errorKeys)
+    return this.getErrorMessage(errorKeys);
   }
 }
