@@ -26,6 +26,15 @@ export class DataFormComponent implements OnInit {
     this.reactiveForm = this.formBuilder.group({
       name: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
+      address: this.formBuilder.group({
+        cep: [null, [Validators.required]],
+        number: [null, [Validators.required]],
+        complement: [null],
+        street: [null, [Validators.required]],
+        neighborhood: [null, [Validators.required]],
+        city: [null, [Validators.required]],
+        federative_unit: [null, [Validators.required]],
+      }),
     });
 
     // [Validators.required, Validators.minLength(3), Validators.maxLength(20)]
@@ -40,12 +49,12 @@ export class DataFormComponent implements OnInit {
     this.reactiveForm.get(controlName);
 
   isAnValidField = (controlName: string): boolean => {
-    const field: AbstractControl | null = this.getControl(controlName)
+    const field: AbstractControl | null = this.getControl(controlName);
     return (field?.valid && field?.touched) || false;
   };
 
   isAnInvalidField = (controlName: string): boolean => {
-    const field: AbstractControl | null = this.getControl(controlName)
+    const field: AbstractControl | null = this.getControl(controlName);
 
     return (!field?.valid && field?.touched) || false;
   };
@@ -77,7 +86,7 @@ export class DataFormComponent implements OnInit {
     }, '');
 
   generateErrorMessage(controlName: string): string {
-    const formField: AbstractControl | null = this.getControl(controlName)
+    const formField: AbstractControl | null = this.getControl(controlName);
 
     if (!formField || formField?.errors === null) return '';
 

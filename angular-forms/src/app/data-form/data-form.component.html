@@ -39,9 +39,159 @@
       </div>
 
       <app-field-error-control
-          [showError]="isAnInvalidField('email')"
-          [errorMessage]="generateErrorMessage('email')"
-        ></app-field-error-control>
+        [showError]="isAnInvalidField('email')"
+        [errorMessage]="generateErrorMessage('email')"
+      ></app-field-error-control>
+    </div>
+  </div>
+
+  <!-- Start address's fields -->
+  <div formGroupName="address">
+    <div class="row">
+      <div class="col-12 col-sm-3">
+        <div class="form-group mb-2">
+          <label for="cep">
+            CEP
+            <span class="text-danger">*</span>
+          </label>
+          <input
+            class="form-control"
+            [ngClass]="applyValidationFieldCss('address.cep')"
+            type="text"
+            id="cep"
+            formControlName="cep"
+            placeholder="xxxxx-xxx"
+          />
+          <app-field-error-control
+            [showError]="isAnInvalidField('address.cep')"
+            errorMessage="CEP é obrigatório!"
+          ></app-field-error-control>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-3">
+        <div class="form-group mb-2">
+          <label for="number">
+            Número
+            <span class="text-danger">*</span>
+          </label>
+          <input
+            class="form-control"
+            [ngClass]="applyValidationFieldCss('address.number')"
+            type="text"
+            id="number"
+            formControlName="number"
+            placeholder="Ex: 445"
+          />
+
+          <app-field-error-control
+            [showError]="isAnInvalidField('address.number')"
+            errorMessage="Número é obrigatório!"
+          ></app-field-error-control>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="form-group mb-2">
+          <label for="complement"> Complemento </label>
+          <input
+            class="form-control"
+            type="text"
+            id="complement"
+            formControlName="address.complement"
+            placeholder="Ex: Perto da mercearia do seu zé"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="street">
+            Rua
+            <span class="text-danger">*</span> </label
+          ><input
+            type="text"
+            class="form-control"
+            [ngClass]="applyValidationFieldCss('address.street')"
+            id="street"
+            formControlName="street"
+            placeholder="Ex: Rua dos Alfeneiros"
+          />
+          <app-field-error-control
+            [showError]="isAnInvalidField('address.street')"
+            errorMessage="Rua é obrigatório!"
+          ></app-field-error-control>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-sm-5">
+        <div class="form-group mb-2">
+          <label for="neighborhood">
+            Bairro
+            <span class="text-danger">*</span>
+          </label>
+          <input
+            class="form-control"
+            [ngClass]="applyValidationFieldCss('address.neighborhood')"
+            type="text"
+            id="neighborhood"
+            formControlName="neighborhood"
+            placeholder="Ex: Esplanada"
+          />
+
+          <app-field-error-control
+            [showError]="isAnInvalidField('address.neighborhood')"
+            errorMessage="Bairro é obrigatório!"
+          ></app-field-error-control>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-4">
+        <div class="form-group mb-2">
+          <label for="city">
+            Cidade
+            <span class="text-danger">*</span>
+          </label>
+          <input
+            class="form-control"
+            [ngClass]="applyValidationFieldCss('address.city')"
+            type="text"
+            id="city"
+            formControlName="city"
+            placeholder="Ex: Açailândia"
+          />
+          <app-field-error-control
+            [showError]="isAnInvalidField('address.city')"
+            errorMessage="Cidade é obrigatório!"
+          ></app-field-error-control>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-3">
+        <div class="form-group mb-2">
+          <label for="federative_unit">
+            Estado
+            <span class="text-danger">*</span>
+          </label>
+          <input
+            class="form-control"
+            [ngClass]="applyValidationFieldCss('address.federative_unit')"
+            type="text"
+            id="federative_unit"
+            formControlName="federative_unit"
+            placeholder="Ex: Espírito Santo"
+          />
+
+          <app-field-error-control
+            [showError]="isAnInvalidField('address.federative_unit')"
+            errorMessage="Estado é obrigatório!"
+          ></app-field-error-control>
+        </div>
+      </div>
     </div>
   </div>
 
