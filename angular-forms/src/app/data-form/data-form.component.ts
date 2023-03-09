@@ -42,7 +42,6 @@ export class DataFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.reactiveForm);
-    // this.reactiveForm.reset()
   }
 
   getControl = (controlName: string): AbstractControl | null =>
@@ -94,4 +93,39 @@ export class DataFormComponent implements OnInit {
     const errorKeys = Object.getOwnPropertyNames(errors);
     return this.getErrorMessage(errorKeys);
   }
+
+  populateDataAddress(data: any): void {
+    const { street, complement, neighborhood, federative_unit, city } = (
+      this.reactiveForm.get('address') as FormGroup
+    )?.controls;
+
+    this.reactiveForm.patchValue({
+      address: {
+        street: data['logradouro'] || street.value,
+        complement: data['complemento'] || complement.value,
+        neighborhood: data['bairro'] || neighborhood.value,
+        federative_unit: data['uf'] || federative_unit.value,
+        city: data['localidade'] || city.value,
+      },
+    });
+
+    this.reactiveForm.get('name')?.setValue('Fulano de tal')
+  }
+
+  searchCep = (): void => {
+    const cep: string | null = this.getControl('address.cep')?.value;
+    if (!cep) return;
+
+    const nonNumericDigits = /\D/g; // regex to find any character different of number
+    const formatedCep = nonNumericDigits.test(cep)
+      ? cep.replace(nonNumericDigits, '')
+      : cep;
+
+    const hasEightDigits = /^[0-9]{8}$/;
+    if (!hasEightDigits.test(formatedCep)) return;
+
+    this.templateFormService
+      .searchCep(formatedCep)
+      .subscribe((resp) => this.populateDataAddress(resp));
+  };
 }

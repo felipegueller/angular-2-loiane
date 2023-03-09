@@ -61,6 +61,7 @@
             id="cep"
             formControlName="cep"
             placeholder="xxxxx-xxx"
+            (blur)="searchCep()"
           />
           <app-field-error-control
             [showError]="isAnInvalidField('address.cep')"
@@ -98,7 +99,7 @@
             class="form-control"
             type="text"
             id="complement"
-            formControlName="address.complement"
+            formControlName="complement"
             placeholder="Ex: Perto da mercearia do seu zé"
           />
         </div>
