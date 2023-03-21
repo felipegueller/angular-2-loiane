@@ -42,6 +42,21 @@ export class DataFormComponent implements OnInit {
 
   onSubmit() {
     console.log(this.reactiveForm);
+
+    if (!this.reactiveForm.valid) this.verifyFormValidations(this.reactiveForm);
+  }
+
+  verifyFormValidations(group: FormGroup) {
+    const controls = group.controls;
+    const controlKeys = Object.keys(controls);
+
+    controlKeys.forEach((key: string) => {
+      // Força a validação do campo de formulário
+      controls[key].markAllAsTouched();
+
+      if (controls[key] instanceof FormGroup)
+        this.verifyFormValidations((controls[key] as FormGroup));
+    });
   }
 
   getControl = (controlName: string): AbstractControl | null =>
@@ -109,7 +124,7 @@ export class DataFormComponent implements OnInit {
       },
     });
 
-    this.reactiveForm.get('name')?.setValue('Fulano de tal')
+    this.reactiveForm.get('name')?.setValue('Fulano de tal');
   }
 
   searchCep = (): void => {
