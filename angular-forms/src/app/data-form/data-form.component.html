@@ -178,14 +178,18 @@
             Estado
             <span class="text-danger">*</span>
           </label>
-          <input
+          <select
             class="form-control"
             [ngClass]="applyValidationFieldCss('address.federative_unit')"
-            type="text"
             id="federative_unit"
             formControlName="federative_unit"
-            placeholder="Ex: Espírito Santo"
-          />
+          >
+          <option value="null" disabled selected>Selecione..</option>
+          <option
+            *ngFor="let federativeState of federativeStatesBr | async"
+            [value]="federativeState.sigla"
+            >{{ federativeState.nome }}</option>
+        </select>
 
           <app-field-error-control
             [showError]="isAnInvalidField('address.federative_unit')"
