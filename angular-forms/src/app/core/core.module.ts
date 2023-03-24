@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { TemplateFormService } from './../template-form/template-form.service';
 
 @NgModule({
   providers: [TemplateFormService],
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
 })
 export class CoreModule {}
