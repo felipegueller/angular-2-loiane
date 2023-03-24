@@ -1,11 +1,14 @@
+import { FederativeStateBr } from './../models/federative-state-br';
+import { DropdownService } from './../core/dropdown/dropdown.service';
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+
+import { Observable } from 'rxjs';
 
 import { TemplateFormService } from './../template-form/template-form.service';
 
@@ -16,11 +19,15 @@ import { TemplateFormService } from './../template-form/template-form.service';
 })
 export class DataFormComponent implements OnInit {
   reactiveForm!: FormGroup;
+  federativeStatesBr: Observable<FederativeStateBr[]>;
 
   constructor(
     private formBuilder: FormBuilder,
-    private templateFormService: TemplateFormService
-  ) {}
+    private templateFormService: TemplateFormService,
+    private dropDownService: DropdownService
+  ) {
+    this.federativeStatesBr = this.dropDownService.getFederativeStateBr()
+  }
 
   ngOnInit(): void {
     this.reactiveForm = this.formBuilder.group({
@@ -36,8 +43,6 @@ export class DataFormComponent implements OnInit {
         federative_unit: [null, [Validators.required]],
       }),
     });
-
-    // [Validators.required, Validators.minLength(3), Validators.maxLength(20)]
   }
 
   onSubmit() {
@@ -55,7 +60,7 @@ export class DataFormComponent implements OnInit {
       controls[key].markAllAsTouched();
 
       if (controls[key] instanceof FormGroup)
-        this.verifyFormValidations((controls[key] as FormGroup));
+        this.verifyFormValidations(controls[key] as FormGroup);
     });
   }
 
@@ -95,8 +100,8 @@ export class DataFormComponent implements OnInit {
       const isLastElement = arr.length - 1 === index;
 
       return isLastElement
-        ? `${acc}${this.errosMap(key)}\n`
-        : `${acc}$${this.errosMap(key)}`;
+        ? `${acc}${this.errosMap(key)}`
+        : `${acc}${this.errosMap(key)}\n`;
     }, '');
 
   generateErrorMessage(controlName: string): string {
